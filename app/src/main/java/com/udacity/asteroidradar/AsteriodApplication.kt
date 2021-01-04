@@ -1,12 +1,8 @@
 package com.udacity.asteroidradar
 
 import android.app.Application
-import android.app.Service
-import android.content.Context
-import android.net.ConnectivityManager
 import android.os.Build
 import androidx.work.*
-import com.udacity.asteroidradar.database.AsteroidDatabase
 import com.udacity.asteroidradar.worker.SyncAsteriodDataWork
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
