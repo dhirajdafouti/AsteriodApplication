@@ -1,0 +1,106 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "29.0.3"
+    defaultConfig {
+        applicationId "com.udacity.asteroidradar"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    buildFeatures {
+        dataBinding true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+    configurations.all {
+        resolutionStrategy {
+            force("org.antlr:antlr4-runtime:4.7.1")
+            force("org.antlr:antlr4-tool:4.7.1")
+        }
+    }
+    testOptions {
+        execution 'ANDROIDX_TEST_ORCHESTRATOR'
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.72"
+
+    // Support libraries
+    implementation "androidx.appcompat:appcompat:$version_appcompat"
+    implementation "androidx.fragment:fragment:$version_fragment"
+    implementation "androidx.constraintlayout:constraintlayout:$version_constraint_layout"
+
+    // Android KTX
+    implementation "androidx.core:core-ktx:$version_core"
+
+    // Navigation
+    implementation "android.arch.navigation:navigation-fragment-ktx:$version_navigation"
+    implementation "android.arch.navigation:navigation-ui-ktx:$version_navigation"
+
+    // Coroutines for getting off the UI thread
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version_kotlin_coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version_kotlin_coroutines"
+
+    // Retrofit for networking
+    implementation "com.squareup.retrofit2:retrofit:2.6.2"
+    implementation "com.squareup.retrofit2:converter-moshi:2.5.0"
+    implementation "com.squareup.retrofit2:converter-scalars:2.5.0"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$version_retrofit_coroutines_adapter"
+
+    //Logging interceptor for the network traces
+    implementation "com.squareup.okhttp3:logging-interceptor:$version_retrofit_logging"
+
+    // Moshi for parsing the JSON format
+    implementation "com.squareup.moshi:moshi:1.8.0"
+    implementation "com.squareup.moshi:moshi-kotlin:1.8.0"
+
+    // Joda time library for dealing with time
+    implementation "joda-time:joda-time:$version_joda"
+
+    // ViewModel and LiveData (arch components)
+    implementation "androidx.lifecycle:lifecycle-extensions:$version_lifecycle_extensions"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+
+    // Logging
+    implementation "com.jakewharton.timber:timber:$version_timber"
+
+    // Glide for images
+    implementation "com.github.bumptech.glide:glide:$version_glide"
+
+    implementation "androidx.room:room-runtime:2.2.5"
+    implementation "androidx.room:room-ktx:2.2.5"
+
+    kapt "androidx.room:room-compiler:2.2.5"
+
+    //Picasso
+    implementation "com.squareup.picasso:picasso:$version_picasso"
+
+    // WorkManager
+    implementation "android.arch.work:work-runtime-ktx:$version_work"
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.0'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.0'
+
+}
